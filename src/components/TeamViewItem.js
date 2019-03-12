@@ -1,8 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class TeamViewItem extends React.Component{
+    static propTypes = {
+        image: PropTypes.img,
+        name: PropTypes.string,
+        type: PropTypes.string,
+    }.require
     constructor(props){
         super(props);
+
+        // state helpful for default cards with no Pokemon
+        this.state= {
+            image: {},
+            name: '???',
+            type: '???',
+        }
     }
 
     render(){
