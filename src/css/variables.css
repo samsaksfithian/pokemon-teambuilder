@@ -1,0 +1,126 @@
+:root {
+  --faintness: 0.3;
+
+  --pokeball-red1: #ee1515;
+  --pokeball-red2: #f00000;
+  --pokeball-black: #222224;
+  --pokeball-black-faint: rgba(34, 34, 36, var(--faintness));
+  --pokeball-white: #f0f0f0;
+
+  /* Type 0: Unknown/Unidentified */
+  --unknown-type: #68a090;
+  --unknown-type-faint: rgba(104, 160, 144, var(--faintness));
+  --unknown-type-dark: #44685e;
+  --unknown-type-light: #9dc1b7;
+
+  /* Type 1: Bug */
+  --bug-type: #a8b820;
+  --bug-type-faint: rgba(168, 184, 32, var(--faintness));
+  --bug-type-dark: #6d7815;
+  --bug-type-light: #c6d16e;
+
+  /* Type 2: Dark */
+  --dark-type: #705848;
+  --dark-type-faint: rgba(112, 88, 72, var(--faintness));
+  --dark-type-dark: #49392f;
+  --dark-type-light: #a29288;
+
+  /* Type 3: Dragon */
+  --dragon-type: #7038f8;
+  --dragon-type-faint: rgba(112, 56, 248, var(--faintness));
+  --dragon-type-dark: #4924a1;
+  --dragon-type-light: #a27dfa;
+
+  /* Type 4: Electric */
+  --electric-type: #f8d030;
+  --electric-type-faint: rgba(248, 208, 48, var(--faintness));
+  --electric-type-dark: #a1871f;
+  --electric-type-light: #fae078;
+
+  /* Type 5: Fairy */
+  --fairy-type: #ee99ac;
+  --fairy-type-faint: rgba(238, 153, 172, var(--faintness));
+  --fairy-type-dark: #9b6470;
+  --fairy-type-light: #f4bdc9;
+
+  /* Type 6: Fighting */
+  --fighting-type: #c03028;
+  --fighting-type-faint: rgba(192, 48, 40, var(--faintness));
+  --fighting-type-dark: #7d1f1a;
+  --fighting-type-light: #d67873;
+
+  /* Type 7: Fire */
+  --fire-type: #f08030;
+  --fire-type-faint: rgba(240, 128, 48, var(--faintness));
+  --fire-type-dark: #9c531f;
+  --fire-type-light: #f5ac78;
+
+  /* Type 8: Flying */
+  --flying-type: #a890f0;
+  --flying-type-faint: rgba(168, 144, 240, var(--faintness));
+  --flying-type-dark: #6d5e9c;
+  --flying-type-light: #c6b7f5;
+
+  /* Type 9: Ghost */
+  --ghost-type: #705898;
+  --ghost-type-faint: rgba(112, 88, 152, var(--faintness));
+  --ghost-type-dark: #493963;
+  --ghost-type-light: #a292bc;
+
+  /* Type 10: Grass */
+  --grass-type: #78c850;
+  --grass-type-faint: rgba(120, 200, 80, var(--faintness));
+  --grass-type-dark: #4e8234;
+  --grass-type-light: #a7db8d;
+
+  /* Type 11: Ground */
+  --ground-type: #e0c068;
+  --ground-type-faint: rgba(224, 192, 104, var(--faintness));
+  --ground-type-dark: #927d44;
+  --ground-type-light: #ebd69d;
+
+  /* Type 12: Ice */
+  --ice-type: #98d8d8;
+  --ice-type-faint: rgba(152, 216, 216, var(--faintness));
+  --ice-type-dark: #638d8d;
+  --ice-type-light: #bce6e6;
+
+  /* Type 13: Normal */
+  --normal-type: #a8a878;
+  --normal-type-faint: rgba(168, 167, 122, var(--faintness));
+  --normal-type-dark: #6d6d4e;
+  --normal-type-light: #c6c6a7;
+
+  /* Type 14: Poison */
+  --poison-type: #a040a0;
+  --poison-type-faint: rgba(160, 64, 160, var(--faintness));
+  --poison-type-dark: #682a68;
+  --poison-type-light: #c183c1;
+
+  /* Type 15: Psychic */
+  --psychic-type: #f85888;
+  --psychic-type-faint: rgba(248, 88, 136, var(--faintness));
+  --psychic-type-dark: #a13959;
+  --psychic-type-light: #fa92b2;
+
+  /* Type 16: Rock */
+  --rock-type: #b8a038;
+  --rock-type-faint: rgba(184, 160, 56, var(--faintness));
+  --rock-type-dark: #786824;
+  --rock-type-light: #d1c17d;
+
+  /* Type 17: Steel */
+  --steel-type: #b8b8d0;
+  --steel-type-faint: rgba(184, 184, 208, var(--faintness));
+  --steel-type-dark: #787887;
+  --steel-type-light: #d1d1e0;
+
+  /* Type 18: Water */
+  --water-type: #6890f0;
+  --water-type-faint: rgba(104, 144, 240, var(--faintness));
+  --water-type-dark: #445e9c;
+  --water-type-light: #9db7f5;
+}
+
+/* Color code/pallete reference: https://bulbapedia.bulbagarden.net/wiki/Category:Type_color_templates */
+/* Color code/palette backup reference: http://www.epidemicjohto.com/t882-type-colors-hex-colors */
