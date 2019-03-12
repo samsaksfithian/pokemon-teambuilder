@@ -1,7 +1,7 @@
 @import './variables.css';
 
 .search-bar {
-  background-color: var(--pokeball-white);
+  background-color: var(--pokeball-black-faint2);
   padding: 5px;
 }
 

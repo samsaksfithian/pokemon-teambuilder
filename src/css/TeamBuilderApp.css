@@ -17,29 +17,3 @@
   box-shadow: 0px 2px 6px 0px var(--pokeball-black-faint);
   position: relative;
 }
-
-.team-builder-app .type1,
-.team-builder-app .type2,
-.team-builder-app .type3,
-.team-builder-app .type4 {
-  height: 20px;
-  margin: 0px;
-  padding: 0px;
-  background-color: gray;
-}
-
-.team-builder-app .type1 {
-  background-color: var(--flying-type);
-}
-
-.team-builder-app .type2 {
-  background-color: var(--flying-type-faint);
-}
-
-.team-builder-app .type3 {
-  background-color: var(--flying-light);
-}
-
-.team-builder-app .type4 {
-  background-color: var(--flying-dark);
-}
