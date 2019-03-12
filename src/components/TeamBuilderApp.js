@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import PokemonList from './PokemonList';
 import TeamViewer from './TeamViewer';
 import SearchBar from './SearchBar';
-import axios from 'axios';
+import '../css/TeamBuilderApp.css';
 
 export default class TeamBuilderApp extends Component {
   constructor(props) {
@@ -50,7 +51,12 @@ export default class TeamBuilderApp extends Component {
   render() {
     return (
       <div className="team-builder-app">
+        <header>Pokemon Team Builder</header>
         <SearchBar onSearch={this.handleSearch} />
+        <div className="type1" />
+        <div className="type2" />
+        <div className="type3" />
+        <div className="type4" />
         <PokemonList
           pokemonList={this.state.pokemonList}
           onAddToTeam={this.handleAddToTeam}

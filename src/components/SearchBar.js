@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../css/SearchBar.css';
 
 class SearchBar extends Component {
   constructor(props) {
@@ -20,16 +21,15 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <nav>
+      <nav className="search-bar">
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             name="search"
-            placeholder="Search"
+            placeholder="🔎 Search"
             value={this.state.searchTextValue}
             onChange={this.handleChange}
           />
-          <button type="submit">Search</button>
         </form>
       </nav>
     );

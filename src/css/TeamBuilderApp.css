@@ -1,0 +1,45 @@
+@import './variables.css';
+
+.team-builder-app {
+  background-color: var(--pokeball-white);
+  height: 100vh;
+}
+
+.team-builder-app header {
+  display: flex;
+  /* justify-content: center; */
+  padding: 10px 5px;
+  background-color: var(--pokeball-red1);
+  color: var(--pokeball-black);
+  font-weight: bold;
+  font-size: 1.3rem;
+  text-shadow: 1px 1px 2px var(--pokeball-white);
+  box-shadow: 0px 2px 6px 0px var(--pokeball-black-faint);
+  position: relative;
+}
+
+.team-builder-app .type1,
+.team-builder-app .type2,
+.team-builder-app .type3,
+.team-builder-app .type4 {
+  height: 20px;
+  margin: 0px;
+  padding: 0px;
+  background-color: gray;
+}
+
+.team-builder-app .type1 {
+  background-color: var(--flying-type);
+}
+
+.team-builder-app .type2 {
+  background-color: var(--flying-type-faint);
+}
+
+.team-builder-app .type3 {
+  background-color: var(--flying-light);
+}
+
+.team-builder-app .type4 {
+  background-color: var(--flying-dark);
+}

@@ -1,0 +1,21 @@
+@import './variables.css';
+
+.search-bar {
+  background-color: var(--pokeball-white);
+  padding: 5px;
+}
+
+.search-bar form {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.search-bar input {
+  height: 2rem;
+  font-size: 1.2rem;
+  width: 50%;
+  padding: 2px 5px;
+  border-radius: 25px;
+  border: 1px solid var(--pokeball-black-faint);
+}
