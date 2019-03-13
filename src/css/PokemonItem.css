@@ -1,0 +1,172 @@
+.pokemon {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.pokemon-sprite {
+  padding-right: 10px;
+}
+
+.pokemon-sprite img {
+  width: 100px;
+}
+
+.pokemon-specie {
+  padding-left: 20px;
+}
+
+.pokemon-types {
+  display: inline-flex;
+  margin-left: auto;
+}
+
+.pokemon-types span {
+  padding: 0px 10px;
+  color: white;
+}
+
+/* Type 1: Bug */
+.pokemon-types .bug {
+  background-color: var(--bug-type);
+  /* --bug-type-faint: rgba(168, 184, 32, var(--faintness));
+--bug-type-dark: #6d7815;
+--bug-type-light: #c6d16e; */
+}
+
+/* Type 2: Dark */
+.pokemon-types .dark {
+  background-color: var(--dark-type);
+  /* --dark-type-faint: rgba(112, 88, 72, var(--faintness));
+--dark-type-dark: #49392f;
+--dark-type-light: #a29288; */
+}
+
+/* Type 3: Dragon */
+.pokemon-types .dragon {
+  background-color: var(--dragon-type);
+  /* --dragon-type-faint: rgba(112, 56, 248, var(--faintness));
+--dragon-type-dark: #4924a1;
+--dragon-type-light: #a27dfa; */
+}
+
+/* Type 4: Electric */
+.pokemon-types .electric {
+  background-color: var(--electric-type);
+  /* --electric-type-faint: rgba(248, 208, 48, var(--faintness));
+--electric-type-dark: #a1871f;
+--electric-type-light: #fae078; */
+}
+
+/* Type 5: Fairy */
+.pokemon-types .fairy {
+  background-color: var(--fairy-type);
+  /* --fairy-type-faint: rgba(238, 153, 172, var(--faintness));
+--fairy-type-dark: #9b6470;
+--fairy-type-light: #f4bdc9; */
+}
+
+/* Type 6: Fighting */
+.pokemon-types .fighting {
+  background-color: var(--fighting-type);
+  /* --fighting-type-faint: rgba(192, 48, 40, var(--faintness));
+--fighting-type-dark: #7d1f1a;
+--fighting-type-light: #d67873; */
+}
+
+/* Type 7: Fire */
+.pokemon-types .fire {
+  background-color: var(--fire-type);
+  /* --fire-type-faint: rgba(240, 128, 48, var(--faintness));
+--fire-type-dark: #9c531f;
+--fire-type-light: #f5ac78; */
+}
+
+/* Type 8: Flying */
+.pokemon-types .flying {
+  background-color: var(--flying-type);
+  /* --flying-type-faint: rgba(168, 144, 240, var(--faintness));
+--flying-type-dark: #6d5e9c;
+--flying-type-light: #c6b7f5; */
+}
+
+/* Type 9: Ghost */
+.pokemon-types .ghost {
+  background-color: var(--ghost-type);
+  /* --ghost-type-faint: rgba(112, 88, 152, var(--faintness));
+--ghost-type-dark: #493963;
+--ghost-type-light: #a292bc; */
+}
+
+/* Type 10: Grass */
+.pokemon-types .grass {
+  background-color: var(--grass-type);
+  /* --grass-type-faint: rgba(120, 200, 80, var(--faintness));
+--grass-type-dark: #4e8234;
+--grass-type-light: #a7db8d; */
+}
+
+/* Type 11: Ground */
+.pokemon-types .ground {
+  background-color: var(--ground-type);
+  /* --ground-type-faint: rgba(224, 192, 104, var(--faintness));
+--ground-type-dark: #927d44;
+--ground-type-light: #ebd69d; */
+}
+
+/* Type 12: Ice */
+.pokemon-types .ice {
+  background-color: var(--ice-type);
+  /* --ice-type-faint: rgba(152, 216, 216, var(--faintness));
+--ice-type-dark: #638d8d;
+--ice-type-light: #bce6e6; */
+}
+
+/* Type 13: Normal */
+.pokemon-types .normal {
+  background-color: var(--normal-type);
+  /* --normal-type-faint: rgba(168, 167, 122, var(--faintness));
+--normal-type-dark: #6d6d4e;
+--normal-type-light: #c6c6a7; */
+}
+
+/* Type 14: Poison */
+.pokemon-types .poison {
+  background-color: var(--poison-type);
+  /* --poison-type-faint: rgba(160, 64, 160, var(--faintness));
+--poison-type-dark: #682a68;
+--poison-type-light: #c183c1; */
+}
+
+/* Type 15: Psychic */
+.pokemon-types .psychic {
+  background-color: var(--psychic-type);
+  /* --psychic-type-faint: rgba(248, 88, 136, var(--faintness));
+--psychic-type-dark: #a13959;
+--psychic-type-light: #fa92b2; */
+}
+
+/* Type 16: Rock */
+.pokemon-types .rock {
+  background-color: var(--rock-type);
+  /* --rock-type-faint: rgba(184, 160, 56, var(--faintness));
+--rock-type-dark: #786824;
+--rock-type-light: #d1c17d; */
+}
+
+/* Type 17: Steel */
+.pokemon-types .steel {
+  background-color: var(--steel-type);
+  /* --steel-type-faint: rgba(184, 184, 208, var(--faintness));
+--steel-type-dark: #787887;
+--steel-type-light: #d1d1e0; */
+}
+
+/* Type 18: Water */
+.pokemon-types .water {
+  background-color: var(--water-type);
+  /* --water-type-faint: rgba(104, 144, 240, var(--faintness));
+--water-type-dark: #445e9c;
+--water-type-light: #9db7f5; */
+}
