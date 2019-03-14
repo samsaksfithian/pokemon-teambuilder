@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import path from 'path';
 import axios from 'axios';
 import '../css/variables.css';
 import '../css/PokemonItem.css';
+import pokeball from '../images/pokeball.png';
 
 export default class PokemonItem extends Component {
   constructor(props) {
@@ -10,44 +12,62 @@ export default class PokemonItem extends Component {
     this.state = {
       id: 0,
       pokemon: {},
+      picture: '',
       types: []
     };
   }
 
   componentDidMount() {
     axios.get(this.props.pokemon.url).then(res => {
+      const id = this.props.id;
+      const pokemon = res.data;
+      const types = res.data.types.map(elem => {
+        return {
+          type: elem.type.name,
+          styles: {
+            backgroundColor: `var(--${elem.type.name}-type-light)`
+          }
+        };
+      });
+
+      const picture = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/${id}${'.png'}`;
+
       this.setState({
-        id: this.props.id,
-        pokemon: res.data,
-        types: [...res.data.types]
+        id,
+        pokemon,
+        picture,
+        types
       });
     });
   }
 
   render() {
-    const { id, pokemon, types } = this.state;
-
-    const IMG_URL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/${id}${'.png'}`;
+    const { id, pokemon, picture, types } = this.state;
 
     return (
-      <div className="pokemon">
-        <span className="pokemon-sprite">
-          <img src={id !== 0 ? IMG_URL : ''} alt={`{pokemon.name} sprite`} />
-        </span>
-        <span className="pokemon-specie">
-          <p>{id !== 0 ? pokemon.name : 'Loading...'}</p>
-        </span>
-        <span className="pokemon-types">
-          {types.map(el => (
-            <span
-              key={el.slot}
-              className={`${el.type.name} pokemon-type`}
-            style={{backgroundColor:var(--${el.type.name}-type);}}
-            >
-              <p>{id !== 0 ? el.type.name : 'Loading...'}</p>
-            </span>
-          ))}
-        </span>
+      <div className="pkmn-card-container">
+        {!Object.keys(pokemon).length && <p>Loading...</p>}
+        {Object.keys(pokemon).length && (
+          <div className="pkmn-card">
+            <div className="pkmn-pic">
+              <img src={picture} alt={`${pokemon.name}`} />
+            </div>
+            <div className="pkmn-info">
+              <div className="pkmn-info-id">{`#${('00' + id).slice(-3)}`}</div>
+              <div className="pkmn-info-name">{pokemon.name}</div>
+              <div className="pkmn-info-types">
+                {types.map((slot, index) => (
+                  <span key={index} style={slot.styles}>
+                    {slot.type}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="pkmn-recruit">
+              <img src={pokeball} alt="pokeball" />
+            </div>
+          </div>
+        )}
       </div>
     );
   }

@@ -7,17 +7,14 @@
 }
 
 .list {
+  height: 20px;
   width: 50vw;
   list-style: none;
   border-style: none;
 }
 
 .list li {
-  padding: 10px;
-  background-color: lightblue;
-  border-bottom: 1px solid lightgray;
-  margin-bottom: 15px;
-  border-radius: 10px;
+
 }
 
 .list li:last-child {

@@ -20,21 +20,21 @@ export default class PokemonList extends Component {
       error: false
     };
 
-    window.onscroll = () => {
-      const {
-        loadSpecies,
-        state: { hasMore, isLoading, error }
-      } = this;
+    // window.onscroll = () => {
+    //   const {
+    //     loadSpecies,
+    //     state: { hasMore, isLoading, error }
+    //   } = this;
 
-      if (error || isLoading || !hasMore) return;
+    //   if (error || isLoading || !hasMore) return;
 
-      if (
-        window.innerHeight + document.documentElement.scrollTop ===
-        document.documentElement.offsetHeight
-      ) {
-        loadSpecies();
-      }
-    };
+    //   if (
+    //     window.innerHeight + document.documentElement.scrollTop ===
+    //     document.documentElement.offsetHeight
+    //   ) {
+    //     loadSpecies();
+    //   }
+    // };
   }
 
   componentDidMount() {
@@ -53,7 +53,7 @@ export default class PokemonList extends Component {
       <div className="pokemon-list">
         <ul className="list">
           {species.map((pokemon, index) => (
-            <li>
+            <li key={pokemon.name}>
               <PokemonItem
                 key={pokemon.name}
                 id={index + 1}
@@ -66,31 +66,31 @@ export default class PokemonList extends Component {
     );
   }
 
-  loadSpecies = () => {
-    this.setState(
-      {
-        isLoading: true
-      },
-      () => {
-        axios
-          .get(this.state.next)
-          .then(res => {
-            const nextSpecies = res.data.results;
+  // loadSpecies = () => {
+  //   this.setState(
+  //     {
+  //       isLoading: true
+  //     },
+  //     () => {
+  //       axios
+  //         .get(this.state.next)
+  //         .then(res => {
+  //           const nextSpecies = res.data.results;
 
-            this.setState({
-              species: [...this.state.species, ...nextSpecies],
-              next: res.data.next,
-              hasMore: this.state.species.length < res.data.count,
-              isLoading: false
-            });
-          })
-          .catch(err => {
-            this.setState({
-              error: err.message,
-              isLoading: false
-            });
-          });
-      }
-    );
-  };
+  //           this.setState({
+  //             species: [...this.state.species, ...nextSpecies],
+  //             next: res.data.next,
+  //             hasMore: this.state.species.length < res.data.count,
+  //             isLoading: false
+  //           });
+  //         })
+  //         .catch(err => {
+  //           this.setState({
+  //             error: err.message,
+  //             isLoading: false
+  //           });
+  //         });
+  //     }
+  //   );
+  // };
 }
