@@ -54,7 +54,16 @@ export default class PokemonItem extends Component {
             </div>
             <div className="pkmn-info">
               <div className="pkmn-info-id">{`#${('00' + id).slice(-3)}`}</div>
-              <div className="pkmn-info-name">{pokemon.name}</div>
+              <div>
+                <span>
+                  <img
+                    className="pkmn-info-ball"
+                    src={pokeball}
+                    alt="pokeball"
+                  />
+                </span>
+                <span className="pkmn-info-name">{pokemon.name}</span>
+              </div>
               <div className="pkmn-info-types">
                 {types.map((slot, index) => (
                   <span key={index} style={slot.styles}>
@@ -63,9 +72,7 @@ export default class PokemonItem extends Component {
                 ))}
               </div>
             </div>
-            <div className="pkmn-recruit">
-              <img src={pokeball} alt="pokeball" />
-            </div>
+            <div className="pkmn-recruit">+</div>
           </div>
         )}
       </div>
