@@ -14,7 +14,8 @@ export default class PokemonItem extends Component {
       id: 0,
       pokemon: {},
       picture: '',
-      types: []
+      types: [],
+      recruit: false
     };
   }
 
@@ -37,7 +38,7 @@ export default class PokemonItem extends Component {
   }
 
   render() {
-    const { id, pokemon, picture, types } = this.state;
+    const { id, pokemon, picture, types, recruit } = this.state;
 
     return (
       <div className="pkmn-card">
@@ -47,7 +48,7 @@ export default class PokemonItem extends Component {
         <div className="pkmn-info">
           <div className="pkmn-id">{`#${('00' + id).slice(-3)}`}</div>
           <div>
-            <span className="pkmn-ball">
+            <span className={`pkmn-ball ${recruit ? 'recruit' : ''}`}>
               <img src={pokeball} alt="pokeball" />
             </span>
             <span className="pkmn-name">{pokemon.name}</span>
@@ -60,8 +61,16 @@ export default class PokemonItem extends Component {
             ))}
           </div>
         </div>
-        <div className="pkmn-recruit">+</div>
+        <button className="pkmn-recruit" onClick={this.handleRecruit}>
+          +
+        </button>
       </div>
     );
   }
+
+  handleRecruit = event => {
+    this.setState({
+      recruit: !this.state.recruit
+    });
+  };
 }
