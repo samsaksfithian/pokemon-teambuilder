@@ -3,7 +3,7 @@ import axios from 'axios';
 import PokemonItem from './PokemonItem';
 import '../css/PokemonList.css';
 
-const TOTAL_NUM_PKMN = 10;
+const TOTAL_NUM_PKMN = 964;
 const LOAD_AMOUNT = 20;
 const POKEAPI_URL = `https://pokeapi.co/api/v2/pokemon?limit=${TOTAL_NUM_PKMN}`;
 
