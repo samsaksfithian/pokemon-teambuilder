@@ -3,10 +3,9 @@ import axios from 'axios';
 import PokemonItem from './PokemonItem';
 import '../css/PokemonList.css';
 
-const POKEAPI_URL = 'https://pokeapi.co/api/v2/pokemon?limit=20';
-
-const API = {};
-API.getPokemon = () => {};
+const TOTAL_NUM_PKMN = 10;
+const LOAD_AMOUNT = 20;
+const POKEAPI_URL = `https://pokeapi.co/api/v2/pokemon?limit=${TOTAL_NUM_PKMN}`;
 
 export default class PokemonList extends Component {
   constructor(props) {
@@ -14,51 +13,30 @@ export default class PokemonList extends Component {
 
     this.state = {
       species: [],
-      next: '',
-      hasMore: true,
-      isLoading: false,
-      error: false
+      offset: 0
     };
 
-    // window.onscroll = () => {
-    //   const {
-    //     loadSpecies,
-    //     state: { hasMore, isLoading, error }
-    //   } = this;
-
-    //   if (error || isLoading || !hasMore) return;
-
-    //   if (
-    //     window.innerHeight + document.documentElement.scrollTop ===
-    //     document.documentElement.offsetHeight
-    //   ) {
-    //     loadSpecies();
-    //   }
-    // };
+    window.addEventListener('scroll', event => this.scrollHandler(event));
   }
 
   componentDidMount() {
     axios.get(POKEAPI_URL).then(res => {
       this.setState({
-        next: res.data.next,
-        species: res.data.results
+        species: res.data.results,
+        offset: LOAD_AMOUNT
       });
     });
   }
 
   render() {
-    const { species } = this.state;
+    const { species, offset } = this.state;
 
     return (
       <div className="pokemon-list">
         <ul className="list">
-          {species.map((pokemon, index) => (
-            <li key={pokemon.name}>
-              <PokemonItem
-                key={pokemon.name}
-                id={index + 1}
-                pokemon={pokemon}
-              />
+          {species.slice(0, offset).map((pokemon, index) => (
+            <li key={index + 1}>
+              <PokemonItem key={index + 1} id={index + 1} pokemon={pokemon} />
             </li>
           ))}
         </ul>
@@ -66,31 +44,19 @@ export default class PokemonList extends Component {
     );
   }
 
-  // loadSpecies = () => {
-  //   this.setState(
-  //     {
-  //       isLoading: true
-  //     },
-  //     () => {
-  //       axios
-  //         .get(this.state.next)
-  //         .then(res => {
-  //           const nextSpecies = res.data.results;
+  scrollHandler = () => {
+    window.onscroll = () => {
+      const list = document.documentElement;
+      const pageHeight = window.innerHeight + list.scrollTop;
+      const listHeight = list.offsetHeight;
 
-  //           this.setState({
-  //             species: [...this.state.species, ...nextSpecies],
-  //             next: res.data.next,
-  //             hasMore: this.state.species.length < res.data.count,
-  //             isLoading: false
-  //           });
-  //         })
-  //         .catch(err => {
-  //           this.setState({
-  //             error: err.message,
-  //             isLoading: false
-  //           });
-  //         });
-  //     }
-  //   );
-  // };
+      if (pageHeight === listHeight) this.loadMoreSpecies();
+    };
+  };
+
+  loadMoreSpecies = () => {
+    this.setState({
+      offset: this.state.offset + LOAD_AMOUNT
+    });
+  };
 }

@@ -1,23 +1,16 @@
-.pkmn-card-container {
-  padding: 10px;
-  background-color: lightblue;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  height: 150px;
-}
-
 .pkmn-card {
   display: flex;
   justify-self: flex-start;
   align-items: center;
-  text-transform: capitalize;
+  background-color: lightblue;
+  border-radius: 10px;
+  padding: 10px;
   height: 150px;
+  text-transform: capitalize;
 }
 
 .pkmn-pic {
-  background-color: rgba(255, 255, 255, 0.5);
-  /* opacity: 0.2; */
-  display: block;
+  background-color: rgba(255, 255, 255, 0.4); /* opacity: 0.2; */
   border-radius: 50%;
 }
 
@@ -27,43 +20,45 @@
 
 .pkmn-info {
   margin-left: 20px;
-  padding: 0px;
   margin-right: auto;
 }
 
-.pkmn-info-id {
+.pkmn-id {
   font-size: 15px;
 }
 
-.pkmn-info-ball {
+.pkmn-ball img {
   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   filter: grayscale(100%);
   width: 20px;
 }
 
-.pkmn-info-ball.recruit {
-  width: 20px;
+.pkmn-ball.recruit img {
   -webkit-filter: none; /* Safari 6.0 - 9.0 */
   filter: none;
+  width: 20px;
 }
 
-.pkmn-info-name {
-  font-size: 30px;
+.pkmn-name {
   margin-left: 5px;
+  font-size: 30px;
+  font-weight: 700;
 }
 
-.pkmn-info-types {
+.pkmn-types {
   display: inline-flex;
 }
 
-.pkmn-info-types span {
+.pkmn-types span {
+  margin-right: 5px;
+  border-radius: 5px;
+  padding: 4px;
+  width: 55px;
   color: #fff;
   font-size: 15px;
-  margin-right: 5px;
-  padding: 4px;
-  border-radius: 5px;
-  width: 50px;
+  font-weight: 600;
   text-align: center;
+  letter-spacing: -1px;
 }
 
 .pkmn-recruit {
@@ -76,4 +71,6 @@
   margin-right: -10px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
 }

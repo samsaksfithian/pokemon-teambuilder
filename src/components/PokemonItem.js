@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import path from 'path';
 import axios from 'axios';
+import pokeball from '../images/pokeball.png';
 import '../css/variables.css';
 import '../css/PokemonItem.css';
-import pokeball from '../images/pokeball.png';
+
+const PKMN_IMG_URL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/`;
 
 export default class PokemonItem extends Component {
   constructor(props) {
@@ -19,24 +20,18 @@ export default class PokemonItem extends Component {
 
   componentDidMount() {
     axios.get(this.props.pokemon.url).then(res => {
-      const id = this.props.id;
-      const pokemon = res.data;
-      const types = res.data.types.map(elem => {
-        return {
-          type: elem.type.name,
-          styles: {
-            backgroundColor: `var(--${elem.type.name}-type-light)`
-          }
-        };
-      });
-
-      const picture = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/${id}${'.png'}`;
-
       this.setState({
-        id,
-        pokemon,
-        picture,
-        types
+        id: this.props.id,
+        pokemon: res.data,
+        picture: `${PKMN_IMG_URL}${this.props.id}${'.png'}`,
+        types: res.data.types.reduceRight((acc, elem) => {
+          return acc.concat({
+            type: elem.type.name,
+            styles: {
+              backgroundColor: `var(--${elem.type.name}-type)`
+            }
+          });
+        }, [])
       });
     });
   }
@@ -45,36 +40,27 @@ export default class PokemonItem extends Component {
     const { id, pokemon, picture, types } = this.state;
 
     return (
-      <div className="pkmn-card-container">
-        {!Object.keys(pokemon).length && <p>Loading...</p>}
-        {Object.keys(pokemon).length && (
-          <div className="pkmn-card">
-            <div className="pkmn-pic">
-              <img src={picture} alt={`${pokemon.name}`} />
-            </div>
-            <div className="pkmn-info">
-              <div className="pkmn-info-id">{`#${('00' + id).slice(-3)}`}</div>
-              <div>
-                <span>
-                  <img
-                    className="pkmn-info-ball"
-                    src={pokeball}
-                    alt="pokeball"
-                  />
-                </span>
-                <span className="pkmn-info-name">{pokemon.name}</span>
-              </div>
-              <div className="pkmn-info-types">
-                {types.map((slot, index) => (
-                  <span key={index} style={slot.styles}>
-                    {slot.type}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="pkmn-recruit">+</div>
+      <div className="pkmn-card">
+        <div className="pkmn-pic">
+          <img src={picture} alt={`${pokemon.name}`} />
+        </div>
+        <div className="pkmn-info">
+          <div className="pkmn-id">{`#${('00' + id).slice(-3)}`}</div>
+          <div>
+            <span className="pkmn-ball">
+              <img src={pokeball} alt="pokeball" />
+            </span>
+            <span className="pkmn-name">{pokemon.name}</span>
           </div>
-        )}
+          <div className="pkmn-types">
+            {types.map((slot, index) => (
+              <span key={index} style={slot.styles}>
+                {slot.type}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="pkmn-recruit">+</div>
       </div>
     );
   }
