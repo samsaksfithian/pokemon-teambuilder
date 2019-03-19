@@ -1,8 +1,8 @@
-import React from 'react';
-import axios from 'axios';
+import React, { Component } from 'react';
+import PokemonList from './PokemonList';
 
-export default class TeamBuilderApp extends React.Component {
+export default class TeamBuilderApp extends Component {
   render() {
-    return <div>Build a team!</div>;
+    return <PokemonList />;
   }
 }
