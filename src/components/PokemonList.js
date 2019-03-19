@@ -39,9 +39,7 @@ export default class PokemonList extends Component {
   };
 
   loadMoreSpecies = () => {
-    this.setState({
-      offset: this.state.offset + LOAD_AMOUNT,
-    });
+    this.setState(prevState => ({ offset: prevState.offset + LOAD_AMOUNT }));
   };
 
   render() {
