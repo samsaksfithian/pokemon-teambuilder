@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import '../css/SearchBar.css';
 
@@ -23,10 +24,13 @@ class SearchBar extends Component {
     return (
       <nav className="search-bar">
         <form onSubmit={this.handleSubmit}>
+          <span role="img" aria-label="search">
+            🔎
+          </span>
           <input
             type="text"
             name="search"
-            placeholder="🔎 Search"
+            placeholder="Search"
             value={this.state.searchTextValue}
             onChange={this.handleChange}
           />

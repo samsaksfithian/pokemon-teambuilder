@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
 import axios from 'axios';
 import PokemonList from './PokemonList';
@@ -36,6 +37,7 @@ export default class TeamBuilderApp extends Component {
       newTeam.push(aPokemon);
       this.setState({ team: newTeam });
     } else {
+      // eslint-disable-next-line no-alert
       window.alert(
         'Your team is full! Remove a Pokemon from your team before adding a new one',
       );
@@ -53,7 +55,7 @@ export default class TeamBuilderApp extends Component {
   render() {
     return (
       <div className="team-builder-app">
-        <header>Pokemon Team Builder</header>
+        <header>Pokémon Team Builder</header>
         <SearchBar onSearch={this.handleSearch} />
         <PokemonList
           pokemonList={this.state.pokemonList}
