@@ -5,6 +5,8 @@ import TeamViewer from './TeamViewer';
 import SearchBar from './SearchBar';
 import '../css/TeamBuilderApp.css';
 
+const POKEAPI_URL_BASE = 'https://pokeapi.co/api/v2/pokemon';
+
 export default class TeamBuilderApp extends Component {
   constructor(props) {
     super(props);
@@ -17,8 +19,8 @@ export default class TeamBuilderApp extends Component {
 
   componentDidMount() {
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon`)
-      .then(response => this.setState({ comments: response.data }))
+      .get(POKEAPI_URL_BASE)
+      .then(response => this.setState({ pokemonList: response.data }))
       .catch(error => console.error(error));
   }
 
@@ -43,8 +45,8 @@ export default class TeamBuilderApp extends Component {
   handleSearch = searchText => {
     // still need to handle being able to search for part of a pokemon name
     axios
-      .get(`https://pokeapi.co/api/v2/pokemon/${searchText}`)
-      .then(response => this.setState({ comments: response.data }))
+      .get(`${POKEAPI_URL_BASE}/${searchText}`)
+      .then(response => this.setState({ pokemonList: response.data }))
       .catch(error => console.error(error));
   };
 
