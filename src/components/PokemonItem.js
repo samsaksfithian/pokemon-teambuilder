@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import pokeball from '../images/pokeball.png';
+import pokeball from '../images/recruit-indicator.png';
 import '../css/variables.css';
 import '../css/PokemonItem.css';
 
