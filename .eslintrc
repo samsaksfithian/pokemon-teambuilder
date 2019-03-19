@@ -21,6 +21,7 @@
         "allow": "single-child"
       }
     ],
+    "react/destructuring-assignment": 0,
     "operator-linebreak": 0,
     "indent": ["error", 2],
     "linebreak-style": 0,
