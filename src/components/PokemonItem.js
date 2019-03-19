@@ -62,7 +62,7 @@ export default class PokemonItem extends Component {
           </div>
         </div>
         <button className="pkmn-recruit" onClick={this.handleRecruit}>
-          +
+          {recruit ? 'x' : '+'}
         </button>
       </div>
     );
