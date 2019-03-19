@@ -25,16 +25,20 @@ export default class TeamBuilderApp extends Component {
   }
 
   handleRemoveFromTeam = index => {
-    const newTeam = this.state.team.slice(0);
-    newTeam.splice(index, 1);
-    this.setState({ team: newTeam });
+    this.setState(prevState => {
+      const newTeam = prevState.team.slice(0);
+      newTeam.splice(index, 1);
+      return { team: newTeam };
+    });
   };
 
   handleAddToTeam = aPokemon => {
     if (this.state.team.length < 6) {
-      const newTeam = this.state.team.slice(0);
-      newTeam.push(aPokemon);
-      this.setState({ team: newTeam });
+      this.setState(prevState => {
+        const newTeam = prevState.team.slice(0);
+        newTeam.push(aPokemon);
+        return { team: newTeam };
+      });
     } else {
       // eslint-disable-next-line no-alert
       window.alert(
