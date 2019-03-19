@@ -13,7 +13,7 @@ export default class PokemonList extends Component {
 
     this.state = {
       species: [],
-      offset: 0
+      offset: 0,
     };
 
     window.addEventListener('scroll', event => this.scrollHandler(event));
@@ -23,25 +23,9 @@ export default class PokemonList extends Component {
     axios.get(POKEAPI_URL).then(res => {
       this.setState({
         species: res.data.results,
-        offset: LOAD_AMOUNT
+        offset: LOAD_AMOUNT,
       });
     });
-  }
-
-  render() {
-    const { species, offset } = this.state;
-
-    return (
-      <div className="pokemon-list">
-        <ul className="list">
-          {species.slice(0, offset).map((pokemon, index) => (
-            <li key={index + 1}>
-              <PokemonItem key={index + 1} id={index + 1} pokemon={pokemon} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
   }
 
   scrollHandler = () => {
@@ -56,7 +40,22 @@ export default class PokemonList extends Component {
 
   loadMoreSpecies = () => {
     this.setState({
-      offset: this.state.offset + LOAD_AMOUNT
+      offset: this.state.offset + LOAD_AMOUNT,
     });
   };
+
+  render() {
+    const { species, offset } = this.state;
+    return (
+      <div className="pokemon-list">
+        <ul className="list">
+          {species.slice(0, offset).map((pokemon, index) => (
+            <li key={index + 1}>
+              <PokemonItem key={index + 1} id={index + 1} pokemon={pokemon} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }

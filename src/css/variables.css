@@ -1,10 +1,12 @@
 :root {
   --faintness: 0.3;
+  --faintness2: 0.7;
 
   --pokeball-red1: #ee1515;
   --pokeball-red2: #f00000;
   --pokeball-black: #222224;
   --pokeball-black-faint: rgba(34, 34, 36, var(--faintness));
+  --pokeball-black-faint2: rgba(34, 34, 36, var(--faintness2));
   --pokeball-white: #f0f0f0;
 
   /* Type 0: Unknown/Unidentified */
