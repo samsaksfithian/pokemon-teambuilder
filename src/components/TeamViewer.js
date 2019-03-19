@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 
 export default class TeamViewer extends Component{
-    constructor(props){
-        super(props);
-    }
 
     render(){
         // destructure object
@@ -12,8 +9,8 @@ export default class TeamViewer extends Component{
             <div className="team-viewer">
                 {team.map(pokemon => (
                     <div>
-                        <TeamViewItem key={pokemon.index} pokemon={pokemon}
-                        onDeleteMe={() => onRemoveFromTeam(pokemon.index)} />
+                        <TeamViewItem key={pokemon.id} pokemon={pokemon}
+                        onDeleteMe={() => onRemoveFromTeam(pokemon.id)} />
                     </div>
                 ))}
             </div>
