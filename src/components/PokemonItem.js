@@ -18,8 +18,8 @@ export default class PokemonItem extends Component {
       types: [],
       recruit: false,
       styles: {
-        backgroundColor: ''
-      }
+        backgroundColor: '',
+      },
     };
   }
 
@@ -33,10 +33,10 @@ export default class PokemonItem extends Component {
           return acc.concat({
             type: elem.type.name,
             styles: {
-              backgroundColor: `var(--${elem.type.name}-type)`
-            }
+              backgroundColor: `var(--${elem.type.name}-type)`,
+            },
           });
-        }, [])
+        }, []),
       });
     });
 
@@ -82,11 +82,10 @@ export default class PokemonItem extends Component {
   handleOnLoad = event => {
     const fac = new FastAverageColor();
     const colorInfo = fac.getColor(
-      document.querySelector(`#pkmn-pic-${this.state.id} img`)
+      document.querySelector(`#pkmn-pic-${this.state.id} img`),
     );
-    console.log(colorInfo);
     const styles = {
-      backgroundColor: colorInfo.rgb
+      backgroundColor: colorInfo.rgb,
     };
 
     this.setState({ styles });
@@ -94,7 +93,7 @@ export default class PokemonItem extends Component {
 
   handleRecruit = event => {
     this.setState({
-      recruit: !this.state.recruit
+      recruit: !this.state.recruit,
     });
   };
 }
