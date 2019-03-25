@@ -4,20 +4,12 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-<<<<<<< HEAD
-    "prop-types": "^15.7.2",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.6"
-=======
     "path": "^0.12.7",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-router-dom": "^4.3.1",
     "react-palette": "^0.1.3",
     "react-scripts": "^2.1.8"
->>>>>>> 052a0548c057b922fad394ca7d76875c2957c4b8
   },
   "scripts": {
     "start": "react-scripts start",
