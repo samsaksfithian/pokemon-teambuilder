@@ -5,13 +5,16 @@ import TeamViewer from './TeamViewer';
 import SearchBar from './SearchBar';
 import '../css/TeamBuilderApp.css';
 
-const POKEAPI_URL_BASE = 'https://pokeapi.co/api/v2/pokemon';
+const TOTAL_NUM_PKMN = 964;
+const POKEAPI_URL_BASE = 'https://pokeapi.co/api/v2/';
+const POKEAPI_URL_ALL = `${POKEAPI_URL_BASE}pokemon-species?limit=${TOTAL_NUM_PKMN}`;
 
 export default class TeamBuilderApp extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      fullPokeList: [],
       pokemonList: [],
       team: [],
     };
@@ -19,8 +22,14 @@ export default class TeamBuilderApp extends Component {
 
   componentDidMount() {
     axios
-      .get(POKEAPI_URL_BASE)
-      .then(response => this.setState({ pokemonList: response.data }))
+      .get(POKEAPI_URL_ALL)
+      .then(response => {
+        this.setState({
+          fullPokeList: response.data.results,
+          pokemonList: response.data.results,
+        });
+      })
+      // eslint-disable-next-line no-console
       .catch(error => console.error(error));
   }
 
@@ -48,11 +57,16 @@ export default class TeamBuilderApp extends Component {
   };
 
   handleSearch = searchText => {
-    // still need to handle being able to search for part of a pokemon name
-    axios
-      .get(`${POKEAPI_URL_BASE}/${searchText}`)
-      .then(response => this.setState({ pokemonList: response.data }))
-      .catch(error => console.error(error));
+    // console.log(`searching for ${searchText}`);
+    if (searchText === '') {
+      this.setState(prevState => ({ pokemonList: prevState.fullPokeList }));
+    } else {
+      this.setState(prevState => ({
+        pokemonList: prevState.fullPokeList.filter(
+          pokemon => pokemon.name.indexOf(searchText) >= 0,
+        ),
+      }));
+    }
   };
 
   render() {
@@ -62,6 +76,7 @@ export default class TeamBuilderApp extends Component {
         <SearchBar onSearch={this.handleSearch} />
         <PokemonList
           pokemonList={this.state.pokemonList}
+          offset={this.state.offset}
           onAddToTeam={this.handleAddToTeam}
         />
         <TeamViewer team={this.state.team} onRemoveFromTeam={this.handleRemoveFromTeam} />

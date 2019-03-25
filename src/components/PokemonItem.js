@@ -1,5 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { Component } from 'react';
 import axios from 'axios';
+import FastAverageColor from 'fast-average-color/dist/index.es6';
 import pokeball from '../images/recruit-indicator.png';
 import '../css/variables.css';
 import '../css/PokemonItem.css';
@@ -17,28 +19,58 @@ export default class PokemonItem extends Component {
       picture: '',
       types: [],
       recruit: false,
+      styles: {
+        backgroundColor: '',
+      },
     };
   }
 
   componentDidMount() {
-    axios.get(this.props.pokemon.url).then(res => {
-      this.setState({
-        id: this.props.id,
-        pokemon: res.data,
-        picture: `${PKMN_IMG_URL}${this.props.id}${'.png'}`,
-        types: res.data.types.reduceRight(
-          (acc, elem) =>
-            acc.concat({
+    this.getPokemonData();
+  }
+
+  componentDidUpdate() {
+    this.getPokemonData();
+  }
+
+  getPokemonData = () => {
+    axios.get(this.props.pokemon.url).then(response => {
+      axios.get(response.data.varieties[0].pokemon.url).then(res => {
+        this.setState({
+          id: res.data.id,
+          pokemon: res.data,
+          picture: `${PKMN_IMG_URL}${res.data.id}${'.png'}`,
+          // eslint-disable-next-line arrow-body-style
+          types: res.data.types.reduceRight((acc, elem) => {
+            return acc.concat({
               type: elem.type.name,
               styles: {
                 backgroundColor: `var(--${elem.type.name}-type)`,
               },
-            }),
-          [],
-        ),
+            });
+          }, []),
+        });
       });
     });
-  }
+  };
+
+  handleOnLoad = () => {
+    const fac = new FastAverageColor();
+    const colorInfo = fac.getColor(
+      document.querySelector(`#pkmn-pic-${this.state.id} img`),
+    );
+    const styles = {
+      backgroundColor: colorInfo.rgb,
+    };
+
+    this.setState({ styles });
+  };
+
+  handleRecruit = () => {
+    this.setState(prevState => ({
+      recruit: !prevState.recruit,
+    }));
+  };
 
   handleRecruit = () => {
     this.setState(prevState => ({ recruit: !prevState.recruit }));
@@ -46,11 +78,17 @@ export default class PokemonItem extends Component {
 
   render() {
     // eslint-disable-next-line object-curly-newline
-    const { id, pokemon, picture, types, recruit } = this.state;
+    const { id, pokemon, picture, types, recruit, styles } = this.state;
+
     return (
-      <div className="pkmn-card">
-        <div className="pkmn-pic">
-          <img src={picture} alt={`${pokemon.name}`} />
+      <div className="pkmn-card" style={styles}>
+        <div id={`pkmn-pic-${id}`} className="pkmn-pic">
+          <img
+            src={picture}
+            alt={`${pokemon.name}`}
+            crossOrigin=""
+            onLoad={this.handleOnLoad}
+          />
         </div>
         <div className="pkmn-info">
           <div className="pkmn-id">{`#${`00${id}`.slice(-3)}`}</div>

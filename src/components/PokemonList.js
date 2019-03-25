@@ -1,31 +1,23 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 import PokemonItem from './PokemonItem';
 import '../css/PokemonList.css';
 
-const TOTAL_NUM_PKMN = 964;
 const LOAD_AMOUNT = 20;
-const POKEAPI_URL = `https://pokeapi.co/api/v2/pokemon?limit=${TOTAL_NUM_PKMN}`;
 
 export default class PokemonList extends Component {
+  static propTypes = {
+    pokemonList: PropTypes.arrayOf(PropTypes.object).isRequired,
+  };
+
   constructor(props) {
     super(props);
 
     this.state = {
-      species: [],
-      offset: 0,
+      offset: LOAD_AMOUNT,
     };
 
     window.addEventListener('scroll', event => this.scrollHandler(event));
-  }
-
-  componentDidMount() {
-    axios.get(POKEAPI_URL).then(res => {
-      this.setState({
-        species: res.data.results,
-        offset: LOAD_AMOUNT,
-      });
-    });
   }
 
   scrollHandler = () => {
@@ -33,21 +25,31 @@ export default class PokemonList extends Component {
       const list = document.documentElement;
       const pageHeight = window.innerHeight + list.scrollTop;
       const listHeight = list.offsetHeight;
+      const scrollOffsetHeight = 150;
 
-      if (pageHeight === listHeight) this.loadMoreSpecies();
+      if (pageHeight >= listHeight - scrollOffsetHeight) {
+        this.loadMoreSpecies();
+      }
     };
   };
 
   loadMoreSpecies = () => {
-    this.setState(prevState => ({ offset: prevState.offset + LOAD_AMOUNT }));
+    const { pokemonList } = this.props;
+    if (pokemonList.length > LOAD_AMOUNT) {
+      // console.log(`loading more, current load amount = ${this.state.offset}`);
+      this.setState(prevState => ({ offset: prevState.offset + LOAD_AMOUNT }));
+    } else {
+      this.setState({ offset: LOAD_AMOUNT });
+    }
   };
 
   render() {
-    const { species, offset } = this.state;
+    const { pokemonList } = this.props;
+    const { offset } = this.state;
     return (
       <div className="pokemon-list">
         <ul className="list">
-          {species.slice(0, offset).map((pokemon, index) => (
+          {pokemonList.slice(0, offset).map((pokemon, index) => (
             <li key={index + 1}>
               <PokemonItem key={index + 1} id={index + 1} pokemon={pokemon} />
             </li>
