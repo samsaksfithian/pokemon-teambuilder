@@ -1,0 +1,17 @@
+@import './variables.css';
+
+.team-view-item {
+    background-color: var(--pokeball-white);
+    border-radius: 10px;
+    display: flex;
+    height: 130px;
+    width: 130px;
+    margin: 6px;
+}
+
+.delete-button {
+    border-radius: 10px;
+    height: 20px;
+    width: 20px;
+    margin: 5px;
+}

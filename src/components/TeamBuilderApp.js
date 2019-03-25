@@ -56,11 +56,12 @@ export default class TeamBuilderApp extends Component {
       <div className="team-builder-app">
         <header>Pokémon Team Builder</header>
         <SearchBar onSearch={this.handleSearch} />
+        <TeamViewer team={this.state.team} onRemoveFromTeam={this.handleRemoveFromTeam} />
         <PokemonList
           pokemonList={this.state.pokemonList}
           onAddToTeam={this.handleAddToTeam}
         />
-        <TeamViewer team={this.state.team} onRemoveFromTeam={this.handleRemoveFromTeam} />
+        {/* <TeamViewer team={this.state.team} onRemoveFromTeam={this.handleRemoveFromTeam} /> */}
       </div>
     );
   }

@@ -1,0 +1,12 @@
+@import './variables.css';
+
+.team-viewer {
+    background-color: var(--pokeball-red2);
+    position: fixed;
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    bottom: 0px;
+    z-index: 100;
+}
