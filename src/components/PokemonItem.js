@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import FastAverageColor from 'fast-average-color/dist/index.es6';
 import pokeball from '../images/recruit-indicator.png';
 import '../css/variables.css';
 import '../css/PokemonItem.css';
@@ -15,12 +16,15 @@ export default class PokemonItem extends Component {
       pokemon: {},
       picture: '',
       types: [],
-      recruit: false
+      recruit: false,
+      styles: {
+        backgroundColor: '',
+      },
     };
   }
 
-  componentDidMount() {
-    axios.get(this.props.pokemon.url).then(res => {
+  async componentDidMount() {
+    await axios.get(this.props.pokemon.url).then(res => {
       this.setState({
         id: this.props.id,
         pokemon: res.data,
@@ -29,21 +33,28 @@ export default class PokemonItem extends Component {
           return acc.concat({
             type: elem.type.name,
             styles: {
-              backgroundColor: `var(--${elem.type.name}-type)`
-            }
+              backgroundColor: `var(--${elem.type.name}-type)`,
+            },
           });
-        }, [])
+        }, []),
       });
     });
+
+    this.handleOnLoad();
   }
 
   render() {
-    const { id, pokemon, picture, types, recruit } = this.state;
+    const { id, pokemon, picture, types, recruit, styles } = this.state;
 
     return (
-      <div className="pkmn-card">
-        <div className="pkmn-pic">
-          <img src={picture} alt={`${pokemon.name}`} />
+      <div className="pkmn-card" style={styles}>
+        <div id={`pkmn-pic-${id}`} className="pkmn-pic">
+          <img
+            src={picture}
+            alt={`${pokemon.name}`}
+            crossOrigin=""
+            onLoad={this.handleOnLoad}
+          />
         </div>
         <div className="pkmn-info">
           <div className="pkmn-id">{`#${('00' + id).slice(-3)}`}</div>
@@ -68,9 +79,21 @@ export default class PokemonItem extends Component {
     );
   }
 
+  handleOnLoad = event => {
+    const fac = new FastAverageColor();
+    const colorInfo = fac.getColor(
+      document.querySelector(`#pkmn-pic-${this.state.id} img`),
+    );
+    const styles = {
+      backgroundColor: colorInfo.rgb,
+    };
+
+    this.setState({ styles });
+  };
+
   handleRecruit = event => {
     this.setState({
-      recruit: !this.state.recruit
+      recruit: !this.state.recruit,
     });
   };
 }

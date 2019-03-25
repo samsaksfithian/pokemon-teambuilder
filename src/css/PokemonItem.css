@@ -2,7 +2,6 @@
   display: flex;
   justify-self: flex-start;
   align-items: center;
-  background-color: lightblue;
   border-radius: 10px;
   padding: 10px;
   /* margin: 5px 0px; */
@@ -12,15 +11,23 @@
 
 .pkmn-pic {
   background-color: rgba(255, 255, 255, 0.4); /* opacity: 0.2; */
-  border-radius: 50%;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  margin-left: -10px;
+  min-height: 170px;
+  width: 185px;
 }
 
 .pkmn-pic img {
   width: 150px;
+  margin-top: 10px;
+  margin-left: 10px;
 }
 
 .pkmn-info {
-  margin-left: 20px;
+  margin-left: 25px;
   margin-right: auto;
 }
 
