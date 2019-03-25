@@ -1,0 +1,19 @@
+.pokemon-list {
+  display: flex;
+  justify-content: center;
+  font-family: sans-serif;
+}
+
+.list {
+  width: 50vw;
+  margin: 10px 0px;
+  list-style: none;
+}
+
+.list li {
+  margin-bottom: 10px;
+}
+
+.list li:last-child {
+  margin-bottom: 0px;
+}
