@@ -29,8 +29,10 @@ export default class PokemonItem extends Component {
     this.getPokemonData();
   }
 
-  componentDidUpdate() {
-    this.getPokemonData();
+  componentDidUpdate(prevProps) {
+    if (prevProps.pokemon !== this.props.pokemon) {
+      this.getPokemonData();
+    }
   }
 
   getPokemonData = () => {
