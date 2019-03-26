@@ -33,9 +33,9 @@ export default class TeamViewItem extends Component{
             //     </button>
             // </div>
             <div className="team-view-item">
-                ID: {this.props.id} 
+                <h4>ID: {this.props.id}</h4> 
                 <br/>
-                Name: {this.props.pokemon}
+                <h4>Name: {this.props.pokemon}</h4>
                 <button type="button" className="delete-button" onClick={this.props.onDeleteMe}>
                 X
                 </button>
