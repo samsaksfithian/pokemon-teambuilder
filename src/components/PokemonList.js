@@ -49,9 +49,9 @@ export default class PokemonList extends Component {
     return (
       <div className="pokemon-list">
         <ul className="list">
-          {pokemonList.slice(0, offset).map((pokemon, index) => (
-            <li key={index + 1}>
-              <PokemonItem key={index + 1} id={index + 1} pokemon={pokemon} />
+          {pokemonList.slice(0, offset).map(pokemon => (
+            <li key={pokemon.name}>
+              <PokemonItem pokemon={pokemon} />
             </li>
           ))}
         </ul>

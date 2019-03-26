@@ -6,8 +6,9 @@ import pokeball from '../images/recruit-indicator.png';
 import '../css/variables.css';
 import '../css/PokemonItem.css';
 
-const PKMN_IMG_URL =
-  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/';
+// const PKMN_IMG_URL =
+//   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/';
+const PKMN_IMG_URL_LOCAL = `${process.env.PUBLIC_URL}/sprites/pokemon/official-artwork/`;
 
 export default class PokemonItem extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export default class PokemonItem extends Component {
         this.setState({
           id: res.data.id,
           pokemon: res.data,
-          picture: `${PKMN_IMG_URL}${res.data.id}${'.png'}`,
+          picture: `${PKMN_IMG_URL_LOCAL}${res.data.id}${'.png'}`,
           // eslint-disable-next-line arrow-body-style
           types: res.data.types.reduceRight((acc, elem) => {
             return acc.concat({
@@ -101,8 +102,8 @@ export default class PokemonItem extends Component {
             <span className="pkmn-name">{pokemon.name}</span>
           </div>
           <div className="pkmn-types">
-            {types.map((slot, index) => (
-              <span key={index} style={slot.styles}>
+            {types.map(slot => (
+              <span key={slot.type} style={slot.styles}>
                 {slot.type}
               </span>
             ))}
