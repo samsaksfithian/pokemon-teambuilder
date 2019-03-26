@@ -8,6 +8,7 @@ import '../css/PokemonItem.css';
 
 const PKMN_IMG_URL =
   'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/';
+const PKMN_IMG_LOCAL_URL = `${process.env.PUBLIC_URL}/sprites/pokemon/official-artwork`;
 
 export default class PokemonItem extends Component {
   constructor(props) {
