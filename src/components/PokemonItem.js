@@ -1,7 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import FastAverageColor from 'fast-average-color/dist/index.es6';
+import MoveList from './MoveList';
 import pokeball from '../images/recruit-indicator.png';
 import '../css/variables.css';
 import '../css/PokemonItem.css';
@@ -11,6 +13,15 @@ import '../css/PokemonItem.css';
 const PKMN_IMG_URL_LOCAL = `${process.env.PUBLIC_URL}/sprites/pokemon/official-artwork/`;
 
 export default class PokemonItem extends Component {
+  static propTypes = {
+    pokemon: PropTypes.shape({
+      abilities: PropTypes.arrayOf(PropTypes.object),
+      moves: PropTypes.arrayOf(PropTypes.object),
+      types: PropTypes.arrayOf(PropTypes.object),
+      stats: PropTypes.arrayOf(PropTypes.object),
+    }).isRequired,
+  };
+
   constructor(props) {
     super(props);
 
@@ -82,9 +93,9 @@ export default class PokemonItem extends Component {
   render() {
     // eslint-disable-next-line object-curly-newline
     const { id, pokemon, picture, types, recruit, styles } = this.state;
-
     return (
       <div className="pkmn-card" style={styles}>
+        <MoveList moveList={pokemon.moves} />
         <div id={`pkmn-pic-${id}`} className="pkmn-pic">
           <img
             src={picture}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PokemonItem from './PokemonItem';
 import '../css/PokemonList.css';
 
-const LOAD_AMOUNT = 20;
+const LOAD_AMOUNT = 2;
 
 export default class PokemonList extends Component {
   static propTypes = {
