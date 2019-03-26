@@ -1,5 +1,6 @@
 .pokemon-list {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   font-family: sans-serif;
 }
@@ -10,10 +11,10 @@
   list-style: none;
 }
 
-.list li {
-  margin-bottom: 10px;
-}
-
-.list li:last-child {
-  margin-bottom: 0px;
+.overlay {
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  opacity: 0.5;
+  display: none;
+  height: 100vh;
+  width: 100vw;
 }

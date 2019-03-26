@@ -1,0 +1,118 @@
+.pkmn-modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+}
+
+.pkmn-modal {
+  padding: 20px;
+  text-transform: capitalize;
+  border-radius: 10px;
+
+  width: 50%;
+}
+
+.pkmn-modal .header {
+  display: flex;
+  flex-direction: row;
+  justify-self: flex-start;
+  align-items: flex-start;
+
+  background-color: rgba(0, 0, 0, 0.1);
+  font-size: 24px;
+  padding: 10px;
+  margin: -20px -20px 20px -20px;
+}
+
+.pkmn-modal .header .id {
+}
+
+.pkmn-modal .header .name {
+  margin: 0 auto;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.pkmn-modal .prelude {
+  display: flex;
+  flex-direction: row;
+  justify-self: flex-start;
+  align-items: flex-start;
+}
+
+.pkmn-modal .prelude .pic {
+  background-color: rgba(255, 255, 255, 0.3); /* opacity: 0.2; */
+  border-radius: 50%;
+  margin-bottom: 25px;
+}
+
+.pkmn-modal .prelude .pic img {
+  width: 200px;
+}
+
+.pkmn-modal .prelude .types {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.pkmn-modal .prelude .types span {
+  border-radius: 5px;
+  padding: 4px;
+  width: 55px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -1px;
+  margin: 0 2.5px;
+}
+
+.pkmn-modal .prelude .info {
+  margin-left: 25px;
+}
+
+.pkmn-modal .prelude .info .stats {
+  margin-bottom: 20px;
+}
+
+.pkmn-modal .prelude .info .profile {
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
+.pkmn-modal .prelude .info .profile th:first-child,
+.pkmn-modal .prelude .info .profile td:first-child {
+  padding: 0 20px 5px 0;
+}
+
+.pkmn-modal .prelude .info .profile tr:first-child {
+  padding: 0 0 20px 0;
+}
+
+.pkmn-modal .prelude .info .profile th:nth-child(n + 2),
+.pkmn-modal .prelude .info .profile td:nth-child(n + 2) {
+  background-color: rgba(255, 255, 255, 0.3); /* opacity: 0.2; */
+
+  border-radius: 5px;
+  padding: 5px;
+  min-width: 75px;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: -1px;
+  margin: 0 2.5px;
+}
+
+.pkmn-modal .prelude .stats table td,
+.pkmn-modal .prelude .stats table th {
+  padding-right: 15px;
+}

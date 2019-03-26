@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import PokemonItem from './PokemonItem';
+import PokemonDetails from './PokemonDetails';
 import '../css/PokemonList.css';
 
 const TOTAL_NUM_PKMN = 964;
@@ -14,6 +15,9 @@ export default class PokemonList extends Component {
     this.state = {
       species: [],
       offset: 0,
+      isModalVisible: false,
+      modalPokemon: {},
+      styles: {},
     };
 
     window.addEventListener('scroll', event => this.scrollHandler(event));
@@ -44,17 +48,47 @@ export default class PokemonList extends Component {
     });
   };
 
+  toggleModal = data => {
+    if (this.state.isModalVisible) {
+      this.setState({
+        isModalVisible: false,
+        styles: { backgroundColor: 'rgba(0, 0, 0, 0.0)', disabled: false },
+      });
+    } else {
+      this.setState({
+        isModalVisible: true,
+        modalPokemon: data,
+        styles: {
+          backgroundColor: 'rgba(0, 0, 0, 0.9)',
+          disabled: true,
+        },
+      });
+    }
+  };
+
   render() {
-    const { species, offset } = this.state;
+    const {
+      species, offset, isModalVisible, modalPokemon, styles,
+    } = this.state;
     return (
       <div className="pokemon-list">
-        <ul className="list">
-          {species.slice(0, offset).map((pokemon, index) => (
-            <li key={index + 1}>
-              <PokemonItem key={index + 1} id={index + 1} pokemon={pokemon} />
-            </li>
-          ))}
-        </ul>
+        {isModalVisible && (
+          <PokemonDetails
+            data={modalPokemon}
+            toggleModal={this.toggleModal}
+            isVisible={isModalVisible}
+          />
+        )}
+
+        <div className="overlay" style={styles} />
+        {species.slice(0, offset).map((pokemon, index) => (
+          <PokemonItem
+            key={index + 1}
+            id={index + 1}
+            pokemon={pokemon}
+            toggleModal={this.toggleModal}
+          />
+        ))}
       </div>
     );
   }

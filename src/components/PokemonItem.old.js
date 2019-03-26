@@ -5,7 +5,8 @@ import pokeball from '../images/recruit-indicator.png';
 import '../css/variables.css';
 import '../css/PokemonItem.css';
 
-const PKMN_IMG_URL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/`;
+const PKMN_IMG_URL =
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/';
 
 export default class PokemonItem extends Component {
   constructor(props) {
@@ -29,14 +30,15 @@ export default class PokemonItem extends Component {
         id: this.props.id,
         pokemon: res.data,
         picture: `${PKMN_IMG_URL}${this.props.id}${'.png'}`,
-        types: res.data.types.reduceRight((acc, elem) => {
-          return acc.concat({
+        types: res.data.types.reduceRight(
+          (acc, elem) => acc.concat({
             type: elem.type.name,
             styles: {
               backgroundColor: `var(--${elem.type.name}-type)`,
             },
-          });
-        }, []),
+          }),
+          [],
+        ),
       });
     });
 
@@ -44,20 +46,17 @@ export default class PokemonItem extends Component {
   }
 
   render() {
-    const { id, pokemon, picture, types, recruit, styles } = this.state;
+    const {
+      id, pokemon, picture, types, recruit, styles,
+    } = this.state;
 
     return (
       <div className="pkmn-card" style={styles}>
         <div id={`pkmn-pic-${id}`} className="pkmn-pic">
-          <img
-            src={picture}
-            alt={`${pokemon.name}`}
-            crossOrigin=""
-            onLoad={this.handleOnLoad}
-          />
+          <img src={picture} alt={`${pokemon.name}`} crossOrigin="" onLoad={this.handleOnLoad} />
         </div>
         <div className="pkmn-info">
-          <div className="pkmn-id">{`#${('00' + id).slice(-3)}`}</div>
+          <div className="pkmn-id">{`#${`00${id}`.slice(-3)}`}</div>
           <div>
             <span className={`pkmn-ball ${recruit ? 'recruit' : ''}`}>
               <img src={pokeball} alt="pokeball" />
@@ -81,9 +80,7 @@ export default class PokemonItem extends Component {
 
   handleOnLoad = event => {
     const fac = new FastAverageColor();
-    const colorInfo = fac.getColor(
-      document.querySelector(`#pkmn-pic-${this.state.id} img`),
-    );
+    const colorInfo = fac.getColor(document.querySelector(`#pkmn-pic-${this.state.id} img`));
     const styles = {
       backgroundColor: colorInfo.rgb,
     };

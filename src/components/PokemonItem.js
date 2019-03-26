@@ -5,7 +5,8 @@ import pokeball from '../images/recruit-indicator.png';
 import '../css/variables.css';
 import '../css/PokemonItem.css';
 
-const PKMN_IMG_URL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/`;
+const PKMN_IMG_URL =
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other-sprites/official-artwork/';
 
 export default class PokemonItem extends Component {
   constructor(props) {
@@ -29,42 +30,39 @@ export default class PokemonItem extends Component {
         id: this.props.id,
         pokemon: res.data,
         picture: `${PKMN_IMG_URL}${this.props.id}${'.png'}`,
-        types: res.data.types.reduceRight((acc, elem) => {
-          return acc.concat({
+        types: res.data.types.reduceRight(
+          (acc, elem) => acc.concat({
             type: elem.type.name,
             styles: {
               backgroundColor: `var(--${elem.type.name}-type)`,
             },
-          });
-        }, []),
+          }),
+          [],
+        ),
       });
     });
-
-    this.handleOnLoad();
   }
 
   render() {
-    const { id, pokemon, picture, types, recruit, styles } = this.state;
+    const { toggleModal } = this.props;
+    const {
+      id, pokemon, picture, types, recruit, styles,
+    } = this.state;
 
     return (
-      <div className="pkmn-card" style={styles}>
-        <div id={`pkmn-pic-${id}`} className="pkmn-pic">
-          <img
-            src={picture}
-            alt={`${pokemon.name}`}
-            crossOrigin=""
-            onLoad={this.handleOnLoad}
-          />
+      <div className="pkmn-card" style={styles} onClick={this.handleOnClick}>
+        <div className="pkmn-card-header">
+          <span className="pkmn-id">{`#${`00${id}`.slice(-3)}`}</span>
+          <p className="pkmn-name">{pokemon.name}</p>
         </div>
-        <div className="pkmn-info">
-          <div className="pkmn-id">{`#${('00' + id).slice(-3)}`}</div>
-          <div>
-            <span className={`pkmn-ball ${recruit ? 'recruit' : ''}`}>
-              <img src={pokeball} alt="pokeball" />
-            </span>
-            <span className="pkmn-name">{pokemon.name}</span>
+        <div className="pkmn-card-front">
+          <div className="pkmn-pic" id={`pkmn-pic-${id}`}>
+            <img src={picture} alt={`${pokemon.name}`} crossOrigin="" onLoad={this.handleOnLoad} />
           </div>
           <div className="pkmn-types">
+            <div>
+              <p />
+            </div>
             {types.map((slot, index) => (
               <span key={index} style={slot.styles}>
                 {slot.type}
@@ -72,23 +70,46 @@ export default class PokemonItem extends Component {
             ))}
           </div>
         </div>
-        <button className="pkmn-recruit" onClick={this.handleRecruit}>
-          {recruit ? 'x' : '+'}
-        </button>
+        <div className="pkmn-card-back">
+          <div className="pkmn-physical">
+            <span>
+              <div>
+                <p>Height</p>
+              </div>
+              <div>{pokemon.height / 10}m</div>
+            </span>
+            <span>
+              <div>
+                <p>Weight</p>
+              </div>
+              <div>{pokemon.weight / 10}kg</div>
+            </span>
+          </div>
+          <div className="pkmn-stats">
+            <p>Stats</p>
+          </div>
+        </div>
+        <div className="pkmn-card-footer">
+          <div className="pkmn-recruit">
+            <img src={pokeball} alt="pokeball" />
+          </div>
+        </div>
       </div>
     );
   }
 
   handleOnLoad = event => {
     const fac = new FastAverageColor();
-    const colorInfo = fac.getColor(
-      document.querySelector(`#pkmn-pic-${this.state.id} img`),
-    );
+    const colorInfo = fac.getColor(document.querySelector(`#pkmn-pic-${this.state.id} img`));
     const styles = {
       backgroundColor: colorInfo.rgb,
     };
 
     this.setState({ styles });
+  };
+
+  handleOnClick = event => {
+    this.props.toggleModal(this.state);
   };
 
   handleRecruit = event => {
